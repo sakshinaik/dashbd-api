@@ -1,0 +1,185 @@
+<mat-card class="project-form" [ngClass]="{'update-project': updateID}">
+    <div *ngIf="!user" align="center">
+        <mat-spinner></mat-spinner>
+    </div>
+    <mat-toolbar class="main" *ngIf="updateID && project">
+        <div style="width:100%;font-weight: 500;">{{project.Project}}</div>
+
+    </mat-toolbar>
+    <form [formGroup]="projectForm" *ngIf="projectForm">
+        <div>
+            <div>
+                <mat-form-field class="project-box">
+                    <input type="text" placeholder="Project Name" matInput formControlName="project">
+                </mat-form-field>
+
+            </div>
+
+            <div style="margin-top:1rem;">
+                <mat-checkbox [(ngModel)]="mop" (ngModelChange)="projectForm.value['mop']=+mop" [ngModelOptions]="{standalone: true}">
+                    MOP
+                </mat-checkbox>
+            </div>
+        </div>
+        <div>
+            <div>
+                <mat-form-field>
+                    <mat-select placeholder="Vertical" formControlName="vertical">
+                        <mat-option *ngFor="let t of (teams$ | async)" [value]="t.ID">
+                            {{ t.Team }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-select placeholder="Category" formControlName="category">
+                        <mat-option *ngFor="let c of (categories$ | async)" [value]="c.ID">
+                            {{ c.Category }}
+                        </mat-option>
+                    </mat-select>
+
+                </mat-form-field>
+
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-select placeholder="Location" formControlName="location">
+                        <mat-option *ngFor="let c of (locations$ | async)" [value]="c.ID">
+                            {{ c.Location }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+        </div>
+        <div>
+
+            <div>
+                <mat-form-field>
+                    <mat-select placeholder="Priority" formControlName="priority">
+                        <mat-option *ngFor="let p of priority; let i = index" [value]="i+1">
+                            {{ i+1 }}
+                        </mat-option>
+
+                    </mat-select>
+
+                </mat-form-field>
+
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-select placeholder="Stage" formControlName="stage">
+                        <mat-option *ngFor="let s of stages" [value]="s">
+                            {{ s }}
+                        </mat-option>
+                        <mat-option style="font-style: italic;" (click)="addCustomStage()">
+                            ...Other
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+            <div>
+                <mat-form-field>
+                    <input type="text" placeholder="Schedule Status" matInput formControlName="status">
+                </mat-form-field>
+
+            </div>
+        </div>
+        <div>
+            <mat-form-field>
+                <input placeholder="Estimated End Date" matInput formControlName="est_end_date" [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+        </div>
+        <div>
+            <div>
+                <mat-form-field>
+                    <mat-select placeholder="Stackholders" formControlName="stackholders">
+                        <mat-option *ngFor="let t of (teams$ | async)" [value]="t.ID">
+                            {{ t.Team }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-hint class="error-div">{{addError.stackholder}}</mat-hint>
+
+                </mat-form-field>
+
+            </div>
+            <div>
+                <button (click)="add('team')" class="action-btn">
+                    +
+                </button>
+            </div>
+            <div style="flex-wrap:wrap">
+                <mat-chip-list>
+                    <mat-chip *ngFor="let s of stackholders">
+                        <span>{{ s.Team }}</span>
+                        <span (click)="delete(stackholders, s.ID)">x</span>
+                    </mat-chip>
+                </mat-chip-list>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <mat-form-field>
+                    <input type="text" placeholder="Assigned To Engineer(s)" matInput formControlName="users" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let u of filteredUsers$ | async" (click)="assignUserID(u.ID)" [value]="u.Firstname +' '+ u.Lastname">
+                            {{u.Firstname}} {{u.Lastname}}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-hint class="error-div">{{addError.users}}</mat-hint>
+
+                </mat-form-field>
+            </div>
+            <div>
+                <button (click)="add('user')" class="action-btn">
+                    +
+                </button>
+            </div>
+
+            <div>
+                <mat-chip-list>
+                    <mat-chip *ngFor="let s of assigned">
+                        <span>{{ s.Firstname}} {{s.Lastname || ''}}</span>
+                        <span (click)="delete(assigned, s.ID)">x</span>
+                    </mat-chip>
+                </mat-chip-list>
+            </div>
+        </div>
+
+        <div style="margin-top:0.5rem; display: flex;">
+            <div class="space-fill">
+                <button mat-raised-button class="green-btn" (click)="submit();" [disabled]="loading">
+                    Submit
+                </button>&nbsp;
+                <button mat-button mat-dialog-close *ngIf="updateID">
+                    Cancel
+                </button>
+                <span *ngIf="loading" style="font-style: italics">
+                    saving...
+                </span>
+                <span *ngIf="messg" class="small" [ngClass]="{'error-div': messg !== savedStr, 'green-font': messg == savedStr}" style="line-height: 2rem;">
+                    {{messg}}
+                </span>
+            </div>
+            <div *ngIf="updateID" style="font-size: 0.5rem; color: #777;">
+                <div>
+                    Added by
+                    <span style="font-weight: 500">{{project.AddedUser.Firstname || '&lt;unknown&gt;'}} {{project.AddedUser.Lastname }}</span> on
+                    <span style="font-weight: 500">{{project.AddedOn | date: 'MMM d, y'}}</span>
+                </div>
+                <div *ngIf="project.UpdatedOn">
+                    Last Updated by
+                    <span style="font-weight: 500">{{project.UpdatedUser.Firstname || '&lt;unknown&gt;'}} {{project.UpdatedUser.Lastname }}</span> on
+                    <span style="font-weight: 500">{{project.UpdatedOn | date: 'MMM d, y'}}</span>
+                </div>
+            </div>
+        </div>
+    </form>
+</mat-card>

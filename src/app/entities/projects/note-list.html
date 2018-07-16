@@ -1,0 +1,34 @@
+<div class="note-div">
+
+    <mat-toolbar class="main">
+        <div style="width:100%;font-weight: 500;">{{projectName}}</div>
+
+    </mat-toolbar>
+    <div align="center">
+        <div *ngIf="noNotes" style="background: white;">No Notes Found!</div>
+        <mat-spinner *ngIf="!noNotes && !entity.length" style="margin-top:2rem;background: white;"></mat-spinner>
+    </div>
+    <div *ngIf="entity.length" style="overflow-y: scroll;max-height: calc(100vh - 2rem)">
+
+        <mat-card *ngFor="let e of entity" style="margin:0.5rem;">
+            <div class="error-div" *ngIf="delID == e.ID" style="margin-left: 16px;line-height: 1rem;">{{ !(error$ | async) ? "DELETING..." : "Deletion Failed!"}}</div>
+
+            <mat-toolbar *ngIf="loaded$ | async">
+                <span style="font-size:0.6rem;">
+                    Added by <span style="font-weight: 500;">{{e.User.Firstname}} {{e.User.Lastname}}</span> on <span style="font-weight: 500;">{{e.AddedOn | date:'MMM d y'}}</span>
+                </span>
+                <span class="space-fill"></span>
+                <span *ngIf="(sessionUser$ | async).IsAdmin || (sessionUser$ | async).ID == e.User.ID">
+                    <mat-icon [matMenuTriggerFor]="menu">delete</mat-icon>
+                </span>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item [disabled]="delID == e.ID" (click)="delete(e.ID)">
+                        Delete Note?
+                    </button>
+                </mat-menu>
+            </mat-toolbar>
+            <mat-card-content *ngIf="loaded$ | async">{{e.Note}}</mat-card-content>
+
+        </mat-card>
+    </div>
+</div>

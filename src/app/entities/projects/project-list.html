@@ -1,0 +1,129 @@
+<div *ngIf="entity" class="settings-page project-list">
+    <div class="btn-bar" style="display: flex;">
+        <div class="space-fill search-div">
+            <input type="text" (keyup)="search.next($event.target.value)" placeholder="Search Project">
+        </div>
+        <div>
+            <mat-paginator (page)="pageEvent = handlePage($event)" [length]="entity?.length" [pageSize]="pageSize" [pageSizeOptions]="pageNum" showFirstLastButtons></mat-paginator>
+
+        </div>
+
+    </div>
+    <div>
+        <table mat-table matSort (matSortChange)="sortData($event)" [dataSource]="dataSource">
+
+            <ng-container matColumnDef="ID">
+                <th mat-header-cell *matHeaderCellDef class="index-col">
+                    #
+                </th>
+                <td mat-cell class="index-col" *matCellDef="let row; let i = index;">
+                    {{i+ (currentPage * pageSize) + 1}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="Project" sticky>
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                    Project
+                </th>
+                <td mat-cell *matCellDef="let element" style="flex: 1 1 auto;" (click)="openUpdate(element.ID)">
+                    <span *ngIf="element.MOP == 1" matBadge="MOP" matBadgeColor="warn" matBadgeOverlap="false" matBadgeSize="small">
+                        {{element.Project}}
+                    </span>
+                    <span *ngIf="element.MOP == 0">{{element.Project}}</span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="CategoryID">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                    Category
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.Category.Category}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="TeamID">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                    Vertical
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.Team.Team}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="Stage">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                    Stage
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.Stage}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="EstEndDate">
+                <th mat-header-cell *matHeaderCellDef>
+                    Est End Date
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.EstEndDate | date:'MMM d, y' }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="Priority">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                    Priority
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.Priority}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="LocationID">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                    Location
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.Location.Location}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="Update">
+                <th mat-header-cell *matHeaderCellDef>
+                    Update Given
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.Note.AddedOn | date:'MMM d, y'}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="Notes" sticky>
+                <th mat-header-cell *matHeaderCellDef>
+                    Notes
+                </th>
+                <td mat-cell *matCellDef="let element" style="max-width: 10rem;">
+                    <span>{{element.Note.Note}}</span>
+
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="Actions" sticky>
+                <th mat-header-cell *matHeaderCellDef>
+
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <button matTooltip="Add Note" (click)="addNote(element.ID)">
+                                <mat-icon class="size-14">add</mat-icon>
+                            </button>
+                    <button *ngIf="element.Note.ID" matTooltip="View Notes" (click)="viewNotes(element.ID, element.Project)">
+                                    <mat-icon class="size-14">search</mat-icon>
+                                </button>
+
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="ScheduleStatus">
+                <th mat-header-cell *matHeaderCellDef>
+                    Sched Status
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.ScheduleStatus}}
+                </td>
+            </ng-container>
+            <tbody>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

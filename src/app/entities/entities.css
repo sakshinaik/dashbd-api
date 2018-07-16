@@ -1,0 +1,59 @@
+::ng-deep .mat-input-wrapper {
+    width: 400px !important;
+}
+
+.mat-dialog-container .mat-form-field {
+    width: 100%;
+}
+
+.info-text {
+    font-weight: 500;
+}
+
+.user-info .user-info-div {
+    display: flex;
+}
+
+.user-info .user-info-div span:first-child {
+    width: 25%;
+    text-align: right;
+}
+
+.user-info .user-info-div span:last-child {
+    padding-left: .5rem;
+}
+
+.user-info .logout-link {
+    text-decoration: underline;
+    color: darkblue;
+}
+
+.logout-link {
+    width: 100%;
+    text-align: center;
+    font-size: 0.7rem;
+    color: black;
+    cursor: pointer;
+}
+
+.user-profile-content {
+    padding: 2rem;
+}
+
+.user-profile.mat-card {
+    max-width: 20rem;
+    margin: auto;
+    padding: 10px;
+}
+
+.user-profile.mat-card .user-form {
+    width: 15rem;
+}
+
+.user-profile.user-info div {
+    max-width: 10rem;
+}
+
+.user-profile .mat-icon {
+    margin-left: -15px;
+}

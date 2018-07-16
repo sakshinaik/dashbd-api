@@ -1,0 +1,138 @@
+.settings {
+    display: flex;
+    height: calc(100% + 2rem);
+    width: 100%;
+    overflow: hidden;
+}
+
+.settings>.menu-list {
+    background-color: #001a33;
+    color: white;
+    font-size: .85rem;
+    cursor: pointer;
+}
+
+.settings>.menu-list li:hover {
+    color: #00bcd4;
+}
+
+.settings>.menu-list li {
+    list-style-type: none;
+    border-bottom: 1px solid #ddd;
+    padding: 5px 2rem 5px 5px;
+    letter-spacing: 1px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.settings .settings-page {
+    flex: 1 1 auto;
+}
+
+.settings-page>div {
+    text-align: center;
+    height: 100%;
+}
+
+.settings .settings-page>div>.mat-icon.setting-bg {
+    font-size: 10rem;
+    margin-left: -10rem;
+    margin-top: 5rem;
+}
+
+.settings-page>div {
+    height: 100%;
+}
+
+.settings-page table {
+    width: 100%;
+}
+
+.settings-page table {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: black;
+}
+
+.settings-page table .mat-header-cell {
+    text-align: left;
+    font-size: .65rem;
+    font-weight: 600;
+    color: black;
+}
+
+.settings-page table td,
+.settings-page table th {
+    padding-left: 24px;
+    font-size: .65rem;
+}
+
+.settings-page table tr .index-col {
+    width: .5rem;
+}
+
+.settings-page table tr.mat-header-row,
+.settings-page table tr.mat-row {
+    height: 2rem;
+}
+
+.settings-page .top-bar,
+.settings-page table tbody tr:nth-child(odd) {
+    background: #eee;
+}
+
+.settings-page .top-bar {
+    display: flex;
+    height: 2rem;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    color: grey;
+    margin: 0 0.5rem;
+}
+
+.settings-page .top-bar>div:last-child {
+    padding-right: 1rem;
+    line-height: 2rem;
+}
+
+.settings-page .top-bar .btn-green {
+    line-height: 1.5rem;
+    margin: auto;
+    background: darkgreen;
+}
+
+.settings-page .btn-bar {
+    width: 100%;
+    background: white;
+    font-size: .6rem;
+}
+
+.settings-page td button {
+    background: #eee;
+    padding: 1px 3px;
+}
+
+.settings-page .mat-icon {
+    height: auto;
+    line-height: 1.25rem;
+    width: auto;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.settings .search-div {
+    line-height: 2rem;
+}
+
+.settings .search-div input {
+    height: 1.4rem;
+    width: 15rem;
+}
+
+.settings .search-div .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+.settings .search-div .mat-form-field-empty.mat-form-field-label {
+    display: none;
+}
+
+.settings-page table tr .mat-cell:not(:first-child),
+.settings-page table tr .mat-column-Location {
+    text-align: left;
+}

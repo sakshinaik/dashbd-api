@@ -1,0 +1,73 @@
+.login-page.mat-card {
+    background-color: #031528;
+    max-width: 20rem;
+    margin: auto;
+    padding: 10px;
+}
+
+.login-page.mat-card .mat-form-field-infix {
+    width: 250px;
+}
+
+.login-page.mat-card>div:not(.login-error) {
+    max-width: 15rem;
+    margin: auto;
+}
+
+.login-error {
+    font-size: 0.8rem;
+    color: red;
+    text-align: center;
+    line-height: 1rem;
+    min-height: 1rem;
+    margin-bottom: 10px;
+}
+
+.login-page-container {
+    height: 100%;
+    padding: 0 0 5rem 0;
+}
+
+.login-page-container>div {
+    padding: 2rem;
+    background: url("../../assets/bg.jpeg") no-repeat
+}
+
+.login-page img {
+    min-height: 40px;
+    max-height: 100px;
+    width: 10vw;
+    min-width: 150px;
+    margin: 10px;
+}
+
+.login-page .mat-raised-button[disabled][disabled] {
+    color: gray;
+    background-color: rgba(0, 0, 0, 0.90)
+}
+
+.login-page .title-txt {
+    font-size: 0.75rem;
+    margin-bottom: 0.8rem;
+    color: #0077bc;
+}
+
+.login-page .mat-form-field {
+    font-size: 0.7rem;
+}
+
+.mat-input-element {
+    font-size: 0.8rem;
+}
+
+.login-page .mat-input-element,
+.login-page .mat-form-field:not(.mat-form-field-invalid) .mat-form-field-label,
+.login-page .mat-focused .mat-form-field-label {
+    color: #0077bc !important;
+}
+
+.login-page .mat-form-field-underline,
+.login-page .mat-form-field:not(.mat-form-field-invalid) .mat-form-field-ripple,
+.login-page .mat-form-field:not(.mat-form-field-invalid) .mat-form-field-ripple {
+    background-color: #0077bc !important;
+}

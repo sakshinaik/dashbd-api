@@ -1,0 +1,24 @@
+<div class="note-form">
+    <form [formGroup]="entityForm">
+        <div>
+            <mat-form-field class="project-box">
+                <textarea matInput placeholder="Note" formControlName="note" style="min-height:5rem;"></textarea>
+            </mat-form-field>
+
+        </div>
+
+        <div class="error-div">{{ messg || ''}}</div>
+
+        <div>
+            <button mat-raised-button class="green-btn" (click)="submit();" [disabled]="loading">
+                Add Note
+            </button>&nbsp;
+            <button mat-button mat-dialog-close>
+                Cancel
+            </button>
+            <span *ngIf="loading" style="font-style: italics">
+                saving...
+            </span>
+        </div>
+    </form>
+</div>

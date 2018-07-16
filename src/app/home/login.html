@@ -1,0 +1,48 @@
+<dashboard-header [hideImg]="true" *ngIf="loginForm"></dashboard-header>
+<div class="login-page-container" *ngIf="loginForm">
+
+    <div>
+        <mat-card class="login-page">
+            <div align="center">
+                <img src="../assets/charter_logo_white.png">
+
+            </div>
+
+            <div class="login-error" align="center">
+                {{error}}
+            </div>
+            <div class="user-form">
+                <form [formGroup]="loginForm">
+                    <div class="title-txt">
+                        Please enter your IPA credentials
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <input type="text" placeholder="Username" matInput formControlName="username" autocomplete="off">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <input type="password" placeholder="Password" matInput formControlName="password" autocomplete="off">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="btn-div">
+                        <div>
+                            <button mat-raised-button class="green-btn" (click)="login();" [disabled]="loading">
+                        Login
+                    </button>
+                            <span *ngIf="loading" style="font-style: italic; color:white;" class="small">
+                        &nbsp;logging in...
+                    </span>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </mat-card>
+    </div>
+</div>
+<user-profile *ngIf="!loginForm" (clkLogout)="logout()"></user-profile>

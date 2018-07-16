@@ -1,0 +1,35 @@
+<div class="user-profile-content">
+    <mat-card class="user-profile">
+
+        <div *ngIf="loadUser" align="center">
+            <mat-spinner></mat-spinner>
+        </div>
+
+        <div *ngIf="!loadUser" class="user-info">
+            <div align="center">
+                <mat-icon [ngClass]="{'green-font': user.IsAdmin}" matTooltip="{{user.IsAdmin ? 'You are an Admin' : ''}}">account_circle</mat-icon>
+            </div>
+            <div align="center">
+                {{user.Firstname}} {{user.Lastname || ''}}
+            </div>
+            <div align="center" class="small">
+                (<span>{{user.Team.Team}}</span> <span *ngIf="!user.Team.Team" class="small" style="text-decoration: underline; cursor: pointer; color: #aaa;" (click)="openUpdate()">Team?</span>)
+            </div>
+            <div>&nbsp;</div>
+            <div align="left" class="small user-info-div">
+                <span>Username: </span><span class="info-text">{{user.Username}}</span>
+            </div>
+            <div align="left" class="small user-info-div">
+                <span>Email:</span> <span class="info-text">{{user.Email}}</span>
+            </div>
+
+            <div>
+                &nbsp;<br/><br/>
+            </div>
+            <div align="center">
+
+                <div class="logout-link small" (click)="openUpdate()">UPDATE</div>
+            </div>
+        </div>
+    </mat-card>
+</div>

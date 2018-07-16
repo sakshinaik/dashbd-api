@@ -1,0 +1,18 @@
+<mat-card class="download-div" style="height: calc(100% - 0.6rem);">
+    <div *ngIf="!(appLoaded$ | async)">
+        Generating project report
+        <br><br>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+
+    </div>
+    <div *ngIf="error$ | async" class="error-div" style="font-size: 1rem">
+        Error generating the report!
+        <span (click)="generate()" style="text-decoration: underline; color: black">Try Again.</span>
+    </div>
+    <div *ngIf="file$ | async">
+        Project report has been generated!<br>
+        <a [href]="file$ |async" download style="color:green;">
+            <mat-icon class="mat-18" class="green-btn" matTooltip="Click to download">cloud_download</mat-icon>
+        </a><br>Download
+    </div>
+</mat-card>

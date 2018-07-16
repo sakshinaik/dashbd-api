@@ -1,0 +1,23 @@
+<form [formGroup]="entityForm">
+
+    <div>
+        <mat-form-field>
+            <input type="text" placeholder="Category" matInput formControlName="category">
+        </mat-form-field>
+
+    </div>
+    <div class="error-div">{{ messg || ''}}</div>
+    <div>
+        <button mat-raised-button class="green-btn" (click)="submit();" [disabled]="loading">
+            Submit
+        </button> &nbsp;
+        <button mat-button mat-dialog-close>
+            Cancel
+        </button>
+
+        <span *ngIf="loading" class="processing-div">
+         saving...
+        </span>
+
+    </div>
+</form>

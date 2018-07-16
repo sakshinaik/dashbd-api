@@ -1,0 +1,22 @@
+<div *ngIf="locations">
+
+    <div class="btn-bar">
+        <mat-paginator (page)="pageEvent = handlePage($event)" [length]="locations?.length" [pageSize]="pageSize" [pageSizeOptions]="pageNum" showFirstLastButtons></mat-paginator>
+
+    </div>
+    <table mat-table matSort matSortActive="Location" matSortDirection="asc" (matSortChange)="sortData($event)" [dataSource]="dataSource">
+
+        <ng-container matColumnDef="ID">
+            <th mat-header-cell *matHeaderCellDef class="index-col">
+                # </th>
+            <td mat-cell class="index-col" *matCellDef="let row; let i = index;"> {{i+ (currentPage * pageSize) + 1}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Location">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Location </th>
+            <td mat-cell *matCellDef="let element"> {{element.Location}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    {{find | async}}
+</div>

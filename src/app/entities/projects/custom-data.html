@@ -1,0 +1,18 @@
+<form [formGroup]="entityForm">
+
+    <div>
+        <mat-form-field>
+            <input type="text" placeholder="{{label}}" matInput formControlName="data">
+        </mat-form-field>
+
+    </div>
+    <div>
+        <button mat-raised-button class="green-btn" (click)="submit();">
+            Submit
+        </button>
+        <button mat-button mat-dialog-close>
+            Cancel
+        </button>
+
+    </div>
+</form>

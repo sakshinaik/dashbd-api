@@ -1,0 +1,120 @@
+    .project-form .mat-form-field {
+        min-width: 15rem;
+        width: inherit;
+    }
+    
+    .project-form form>div>div:not(:first-child) {
+        padding-left: 1rem;
+    }
+    
+    .project-form .action-btn {
+        margin-top: 50%;
+        ;
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+    
+    .project-form form>div {
+        display: flex;
+    }
+    
+    .project-form .mat-chip>span:nth-child(2) {
+        margin-left: 1rem;
+        color: darkred;
+        cursor: pointer;
+    }
+    
+    .project-form.mat-card:not(.update-project) {
+        width: inherit;
+        height: inherit;
+        margin: 2rem;
+    }
+    
+    .project-form.mat-card.update-project {
+        margin: -24px;
+    }
+    
+    .project-list td.mat-column-Project {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    
+    .btn-bar .search-div {
+        line-height: 2rem;
+        margin: auto 1rem;
+        text-align: left;
+    }
+    
+    .btn-bar .search-div input {
+        height: 1.4rem;
+        width: 15rem;
+    }
+    
+    .note-div .mat-card {
+        padding: 0;
+    }
+    
+    .note-div {
+        background-color: #001a33;
+    }
+    
+    .update-project .mat-toolbar-single-row {
+        margin: -24px 0 1rem -24px;
+        width: calc(100% + 48px);
+    }
+    
+    .update-project .mat-toolbar-single-row,
+    .note-div .mat-toolbar-single-row.main {
+        background-color: #001a33;
+        color: #00bcd4;
+    }
+    
+    .update-project .mat-toolbar-single-row,
+    .note-div .mat-toolbar-single-row {
+        height: 2rem;
+        font-size: 0.8rem;
+        font-weight: 400;
+    }
+    
+    .note-div {
+        margin: -24px;
+    }
+    
+    .note-div .mat-icon {
+        height: auto;
+        line-height: 1.25rem;
+        width: auto;
+        font-size: 1rem;
+        margin: 0;
+    }
+    
+    .note-div .mat-card-content {
+        padding: 16px;
+    }
+    
+    .green-font {
+        color: darkgreen;
+    }
+    
+    .mat-badge-warn .mat-badge-content {
+        color: red;
+        background: inherit;
+    }
+    
+    .settings-page.project-list table td {
+        font-size: 0.6rem;
+    }
+    
+    .mat-dialog-container {
+        display: flex !important;
+        flex-direction: column;
+    }
+    
+    .mat-dialog-container>* {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .mat-dialog-content {
+        max-height: inherit !important;
+    }

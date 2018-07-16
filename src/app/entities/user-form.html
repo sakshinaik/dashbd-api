@@ -1,0 +1,60 @@
+<form [formGroup]="entityForm">
+
+    <div style="display: flex;">
+        <div>
+            <mat-form-field>
+                <input type="text" placeholder="IPA Username" matInput formControlName="username" [readonly]="updateID">
+            </mat-form-field>
+
+        </div>
+        <!--div style="margin-top:1rem;">
+            <mat-checkbox [(ngModel)]="admin" (ngModelChange)="entityForm.value['isAdmin']=+admin" [ngModelOptions]="{standalone: true}">
+                Admin
+            </mat-checkbox>
+        </div-->
+    </div>
+    <div style="display: flex;">
+        <div>
+            <mat-form-field>
+                <input type="text" placeholder="Firstname" matInput formControlName="firstname">
+            </mat-form-field>
+
+        </div>
+        <div>
+            <mat-form-field>
+                <input type="text" placeholder="Lastname" matInput formControlName="lastname">
+            </mat-form-field>
+
+        </div>
+    </div>
+    <div>
+        <mat-form-field>
+            <input type="text" placeholder="Email" matInput formControlName="email">
+        </mat-form-field>
+
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-select placeholder="Team" formControlName="teamID">
+                <mat-option *ngFor="let t of (teams$ | async)" [value]="t.ID">
+                    {{ t.Team }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </div>
+    <div class="error-div">{{ messg || ''}}</div>
+    <div>
+        <button mat-raised-button class="green-btn" (click)="submit();" [disabled]="loading">
+            Submit
+        </button>&nbsp;
+        <button mat-button mat-dialog-close>
+            Cancel
+        </button>
+
+        <span *ngIf="loading" class="processing-div">
+            saving...
+        </span>
+
+    </div>
+</form>
